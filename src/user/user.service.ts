@@ -21,11 +21,14 @@ export class UserService {
   }
 
   async findOneById(id: string): Promise<User> {
-    return this.userModel.findById(id).exec();
+    // return this.userModel.findById(id).exec();
+    const user = await this.userModel.findById(id).exec();
+    return user;
   }
 
   async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+    const users= await this.userModel.find().exec();
+    return users;
   }
 
   async update(id: string, userData: any): Promise<User> {

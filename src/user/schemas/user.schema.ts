@@ -22,7 +22,7 @@ password: string;
   @Prop({ required: true })
   lastname: string;
 
-  @Prop({ default: '', type: String })
+  @Prop({ default: 'https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg', type: String })
   avatar: string;
 
   @Prop({ default: Date.now })
