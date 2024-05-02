@@ -3,13 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://biantuadikevin:HhIKWep1Kj4SsOjx@cluster0.lgfsgvy.mongodb.net/gael_music?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://biantuadikevin:HhIKWep1Kj4SsOjx@cluster0.lgfsgvy.mongodb.net/task_test?retryWrites=true&w=majority'),
+    JwtModule.register({
+      secret: 'YOUR_SECRET_KEY',
+      signOptions: { expiresIn: '1d' }, // Optionnel : durée de validité du token
+    }),
     UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, AuthController],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}
