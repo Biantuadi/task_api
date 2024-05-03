@@ -1,7 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+export type TaskDocument = Task & Document;
+
+@Schema({ timestamps: true })
 export class Task extends Document {
   @Prop()
   title: string;
@@ -24,11 +26,10 @@ export class Task extends Document {
   @Prop()
   assignee_id: string;
 
-  @Prop()
-  createdAt: any;
+  @Prop({ default: Date.now })
+  createdAt: Date;
+    id: any;
 }
 
-export const TaskSchemaName = 'Task';
 export const TaskSchema = SchemaFactory.createForClass(Task);
 
-export type TaskDocument = Task & Document;

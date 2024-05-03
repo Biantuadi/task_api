@@ -8,7 +8,7 @@ export type UserDocument = User & Document;
 @Schema({ timestamps: true }) // Ajoute des horodatages createdAt et updatedAt automatiquement
 export class User {
   toObject() {
-    throw new Error('Method not implemented.');
+    throw new Error('Method not implemented.'); 
   }
   @Prop({ required: true })
   email: string;

@@ -23,6 +23,16 @@ export class TaskService {
         const tasks = await this.taskModel.find().exec();
         return tasks;
     }
+
+    async update(taskData: any): Promise<Task> {
+        const task = await this.taskModel.findByIdAndUpdate(taskData._id, taskData, { new: true });
+        return task;
+    }
+
+    async delete(id: string): Promise<any> {
+        return this.taskModel.findByIdAndDelete(id);
+    }
+    
     async deleteAll(): Promise<any> {
         return this.taskModel.deleteMany({});
     }

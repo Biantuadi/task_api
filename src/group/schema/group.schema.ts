@@ -1,7 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+export type GroupDocument = Group & Document;
+
+
+@Schema({ timestamps: true })
 export class Group extends Document {
   @Prop()
   name: string;
@@ -15,11 +18,10 @@ export class Group extends Document {
   @Prop()
   members: [any]
 
-  @Prop()
-  createdAt: any;
+  @Prop({ default: Date.now })
+  createdAt: Date;
+    id: any;
 }
 
 export const GroupSchemaName = 'Group';
 export const GroupSchema = SchemaFactory.createForClass(Group);
-
-export type GroupDocument = Group & Document;
